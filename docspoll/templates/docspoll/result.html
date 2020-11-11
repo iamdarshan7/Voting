@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron">
+    {{question.desc}}<br>
+    <hr>
+    <form action="{% url 'vote' question.id %}" method="POST">
+        {% csrf_token %}
+        <div class="form-check mb-4">
+            {% for choice in question.vote_set.all %}
+            <input class="form-check-input" type="radio" name="choice" id="choice{{forloop.counter}}"
+                   value="{{choice.id}}">
+            <label class="form-check-label mr-5" for="choice{{forloop.counter}}">
+                {{choice.candidate}}
+            </label>
+            {% endfor %}
+        </div>
+
+        <input type="submit" value="Vote" class="btn btn-primary">
+    </form>
+
+
+</div>
+{% endblock %}

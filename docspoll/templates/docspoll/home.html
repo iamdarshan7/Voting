@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron">
+    {% for question in question %}
+    <a href="{% url 'detail' question.id%}">{{question.question_text}}</a>
+    {% endfor %}
+</div>
+{% endblock %}
